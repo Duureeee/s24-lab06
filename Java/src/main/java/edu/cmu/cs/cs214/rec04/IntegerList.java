@@ -59,5 +59,7 @@ public interface IntegerList {
      */
     public int size();
 
+    public char[] getTotalAdded();
+
 
 }
