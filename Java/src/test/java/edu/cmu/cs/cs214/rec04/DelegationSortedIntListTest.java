@@ -1,9 +1,14 @@
 package edu.cmu.cs.cs214.rec04;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests for the DelegationSortedIntList class.
+ *
+ * @author Nora Shoemaker
+ */
 public class DelegationSortedIntListTest {
 
     private DelegationSortedIntList list1;
@@ -24,7 +29,6 @@ public class DelegationSortedIntListTest {
         list1.add(2);
 
         assertTrue(list1.getTotalAdded() == 5);
-
         printList(list1);
     }
 

@@ -1,25 +1,37 @@
 package edu.cmu.cs.cs214.rec04;
 
-public class DelegationSortedIntList implements IntegerList {
-    private SortedIntList list = new SortedIntList();
-    private int totalAdded = 0;
+/**
+ * DelegationSortedIntList -- a variant of a SortedIntList that keeps
+ * count of the number of attempted element insertions (not to be confused
+ * with the current size, which goes down when an element is removed)
+ * and exports an accessor (totalAdded) for this count.
+ *
+ * @author Nora Shoemaker
+ *
+ */
 
+public class DelegationSortedIntList implements IntegerList{
+    // Write your implementation below with API documentation
+    private SortedIntList list;
+    private int totalAdded;
+
+    public DelegationSortedIntList(){
+        list = new SortedIntList();
+        totalAdded=0;
+    }
+    public int getTotalAdded(){
+        return totalAdded;
+    }
     @Override
-    public boolean add(int value) {
-        boolean added = list.add(value);
-        if (added) totalAdded++;
-        return added;
+    public boolean add(int num) {
+        totalAdded++;
+        return list.add(num);
     }
 
     @Override
-    public boolean addAll(IntegerList other) {
-        boolean changed = false;
-        for (int i = 0; i < other.size(); i++) {
-            if (add(other.get(i))) {
-                changed = true;
-            }
-        }
-        return changed;
+    public boolean addAll(IntegerList lis) {
+        totalAdded= totalAdded + lis.size();
+        return list.addAll(lis);
     }
 
     @Override
@@ -42,8 +54,4 @@ public class DelegationSortedIntList implements IntegerList {
         return list.size();
     }
 
-    @Override
-    public int getTotalAdded() {
-        return totalAdded;
-    }
 }
